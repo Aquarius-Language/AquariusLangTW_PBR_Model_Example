@@ -1,4 +1,6 @@
-param([string]$編譯器 = '', [switch]$桌面)
+﻿param([string]$編譯器 = '', [switch]$桌面,
+    [switch]$Android, [switch]$APK
+)
 $ErrorActionPreference = 'Stop'
 if (-not $編譯器) {
     $本機編譯器 = Join-Path (Split-Path $PSScriptRoot) 'AquariusLangTW/AquariusCli/bin/Debug/net8.0/aqua.dll'
@@ -27,6 +29,12 @@ try {
         執行編譯器 @('build','pbr_models.wasm','--target','windows','-o','dist/pbr_models.exe')
     }
     Write-Output '完成：pbr_models.wasm 與 ./web。'
+
+    if ($Android -or $APK) {
+        $AndroidOutput = if ($APK) { 'dist/android.apk' } else { ('dist/android-project-' + [Guid]::NewGuid().ToString('N').Substring(0,8)) }
+        執行編譯器 @('build','pbr_models.wasm','--target','android','-o',$AndroidOutput) | Out-Null
+        if ($LASTEXITCODE -ne 0) { throw 'Android 建置失敗。' }
+    }
 } finally {
     [Console]::OutputEncoding = $原主控台輸出編碼
     $OutputEncoding = $原輸出編碼
