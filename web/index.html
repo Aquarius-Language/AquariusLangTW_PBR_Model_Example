@@ -1,19 +1,22 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-Hant">
+<head>
+<link rel="icon" href="data:,">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Aquarius WebAssembly</title>
-<link rel="icon" href="data:,">
+<title>AquariusLang</title>
 <style>
-html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#0c1624;color:#e5eff7;font:15px system-ui}
-#surfaces{position:fixed;inset:0}
-#surfaces canvas{display:block;width:100%;height:100%;outline:none}
-#output{position:fixed;inset:0;margin:0;padding:16px;overflow:auto;white-space:pre-wrap}
-body:has(#surfaces canvas) #output{display:none}
-#error{position:fixed;inset:16px auto auto 16px;max-width:calc(100% - 64px);padding:16px;background:#203446;white-space:pre-wrap}
+  html, body { margin: 0; height: 100%; background: #101418; color: #e8eef2; font: 14px/1.4 system-ui, sans-serif; }
+  #surfaces { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+  #surfaces canvas { max-width: 100%; max-height: 100%; outline: none; }
+  #output { margin: 0; padding: 12px; white-space: pre-wrap; font-family: ui-monospace, monospace; position: relative; }
+  #error { color: #ff8a80; padding: 0 12px; white-space: pre-wrap; position: relative; }
 </style>
-<main id="surfaces"></main>
-<pre id="output" aria-live="polite"></pre>
-<div id="error" role="alert" hidden></div>
+</head>
+<body>
+<div id="surfaces"></div>
+<pre id="output"></pre>
+<div id="error"></div>
 <script type="module" src="app.mjs"></script>
+</body>
 </html>

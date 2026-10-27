@@ -1,0 +1,8 @@
+{
+  "program": "program.wasm",
+  "entry": "main.aqua",
+  "assets": {
+    "assets/orbit.mtl": "assets/assets/orbit.mtl",
+    "assets/orbit.obj": "assets/assets/orbit.obj"
+  }
+}
